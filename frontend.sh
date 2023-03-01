@@ -3,7 +3,7 @@ log=/tmp/roboshop.log
 
 echo -e "\e[35m install nginx \e[0m"
 yum install nginx -y &>>${log}
-
+echo $?
 echo -e "\e[35m remove old content\e[0m"
 rm -rf /usr/share/nginx/html/*  &>>${log}
 echo -e "\e[35m download the frontend content\e[0m"
@@ -18,3 +18,6 @@ echo -e "\e[35m efnable nginx\e[0m"
 systemctl enable nginx &>>${log}
 echo -e "\e[35m start nginx\e[0m"
 systemctl restart nginx &>>${log}
+
+
+
