@@ -18,7 +18,7 @@ print_head "download the catalogue content"
 curl -l -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>${log}
 status_check
 
-print_head "clean up the old  content""
+print_head "clean up  old  content""
 rm -rf /app/* &>>${log}
 status_check
 
