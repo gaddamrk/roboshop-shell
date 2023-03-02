@@ -16,48 +16,48 @@ status_check
 
 mkdir -p /app &>>{log}
 
-echo -e "\e[35m download the catalogue content \e[0m"
+print_head "download the catalogue content"
 curl -l -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>${log}
 status_check
 
-echo -e "\e[35m clean up the old  content \e[0m"
+print_head "clean up the old  content""
 rm -rf /app/* &>>${log}
 status_check
 
-echo -e "\e[35m extracting the app content  \e[0m"
+print_head "extracting the app content"
 cd /app
 unzip /tmp/catalogue.zip &>>{log}
 status_check
 
-echo -e "\e[35m install the nodejs dependency \e[0m"
+print_head "install the nodejs dependency"
 cd /app
 npm install &>>{log}
 status_check
 
-echo -e "\e[35m configuring catalogue servcie files \e[0m"
+print_head "configuring catalogue servcie files"
 cp $script_location/files/catalogue.service /etc/systemd/system/catalogue.service &>>{log}
 status_check
 
-echo -e "\e[35m reload systemd \e[0m"
+print_head "reload systemd"
 systemctl daemon-reload &>>{log}
 status_check
 
-echo -e "\e[35m enable catalogue service \e[0m"
+print_head "enable catalogue service"
 systemctl enable catalogue &>>{log}
 status_check
 
-echo -e  "\e[35m start catalogue service \e[0m"
+print_head "start catalogue service"
 systemctl start catalogue &>>{log}
 status_check
 
-echo -e "\e[35m configuring the monogo repo \e[0m"
+print_head "configuring the monogo repo"
 cp $script_location/files/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log}
 status_check
 
-echo -e "\e[35m install mongodb client \e[0m"
+print_head "install mongodb client"
 yum install mongodb-org-shell -y &>>${log}
 status_check
 
-echo -e "\e[35m load schema \e[0m"
+print_head "load schema"
 mongo --host mongodb-dev.devops70roboshop.online </app/schema/catalogue.js &>>${log}
 status_check
