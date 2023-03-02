@@ -12,6 +12,7 @@ print_head "add application user"
 id roboshop &>>${log}
 if [ $? -ne 0 ]; then
   useradd roboshop &>>${log}
+fi
 status_check
 
 print_head "download the catalogue content"
