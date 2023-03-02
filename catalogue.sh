@@ -2,15 +2,15 @@ source common.sh
 
 # setup nodeJS repos. Vendor is providing a script to setup the repos.
 
-echo -e "\e[35m configuring node js files \e[0m"
+print_head "configuring node js files"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log}
 status_check
 
-echo -e "\e[35m install nodejs \e[0m"
+print_head " install nodejs "
 yum install nodejs -y &>>${log}
 status_check
 
-echo -e "\e[35m add application user \e[0m"
+print_head "add application user"
 useradd roboshop &>>${log}
 status_check
 
