@@ -49,7 +49,7 @@ then
 else
   echo failure
 fi
-0echo -e "\e[35m start nginx\e[0m"
+echo -e "\e[35m start nginx\e[0m"
 systemctl restart nginx &>>${log}
 if [ $? -eq 0 ]
 then
