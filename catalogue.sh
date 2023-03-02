@@ -29,6 +29,7 @@ then
   echo success
 else
   echo failure
+  echo refer log file more information log - ${log}
 exit
 fi
 mkdir -p /app &>>{log}
