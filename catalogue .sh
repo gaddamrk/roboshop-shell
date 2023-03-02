@@ -1,3 +1,5 @@
+source common.sh
+
 print_head "configuring node js files"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log}
 status_check
@@ -12,8 +14,6 @@ if [ $? -ne 0 ]; then
   useradd roboshop &>>${log}
 status_check
 
-mkdir -p /app &>>{log}
-
 print_head "download the catalogue content"
 curl -l -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>${log}
 status_check
@@ -22,10 +22,7 @@ print_head "clean up the old  content""
 rm -rf /app/* &>>${log}
 status_check
 
-print_head "extracting the app content"
-cd /app
-unzip /tmp/catalogue.zip &>>{log}
-status_check
+mkdir -p /app &>>{log}
 
 print_head "install the nodejs dependency"
 cd /app
@@ -59,3 +56,12 @@ status_check
 print_head "load schema"
 mongo --host mongodb-dev.devops70roboshop.online </app/schema/catalogue.js &>>${log}
 status_check
+
+
+
+
+
+
+
+
+
