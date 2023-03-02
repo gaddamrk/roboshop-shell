@@ -4,13 +4,14 @@ print_head "configuring node js files"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log}
 status_check
 
-print_head " install nodejs "
+print_head "install nodejs"
 yum install nodejs -y &>>${log}
 status_check
 
 print_head "add application user"
 id roboshop &>>${log}
-if [ $? -ne 0 ]; then
+if [ $? -ne 0 ]
+  then
   useradd roboshop &>>${log}
 fi
 status_check
@@ -62,7 +63,3 @@ status_check
 print_head "load schema"
 mongo --host mongodb-dev.devops70roboshop.online </app/schema/catalogue.js &>>${log}
 status_check
-
-
-
-
