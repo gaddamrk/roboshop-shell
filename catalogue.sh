@@ -18,16 +18,21 @@ print_head "download the catalogue content"
 curl -l -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>${log}
 status_check
 
-print_head "clean up  old  content""
+print_head "clean up the old  content"
 rm -rf /app/* &>>${log}
 status_check
 
-mkdir -p /app &>>{log}
+print_head "extracting the app content"
+cd /app
+unzip /tmp/catalogue.zip &>>{log}
+status_check
+
 
 print_head "install the nodejs dependency"
 cd /app
 npm install &>>{log}
 status_check
+
 
 print_head "configuring catalogue servcie files"
 cp $script_location/files/catalogue.service /etc/systemd/system/catalogue.service &>>{log}
@@ -56,11 +61,6 @@ status_check
 print_head "load schema"
 mongo --host mongodb-dev.devops70roboshop.online </app/schema/catalogue.js &>>${log}
 status_check
-
-
-
-
-
 
 
 
