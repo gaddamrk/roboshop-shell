@@ -41,7 +41,7 @@ nodejs() {
   curl -l -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log}
   status_check
 
-  print_head "clean up the old  content"
+  print_head "clean up the old content"
   rm -rf /app/* &>>${log}
   status_check
 
