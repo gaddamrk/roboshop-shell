@@ -29,7 +29,7 @@ systemctl start mysqld &>>${log}
 status_check
 
 print_head "reset default database password"
-mysql_secure_installation --set-root-pass ${root_mysql_password} &>>${log}
+mysql_secure_installation --set-root-pass ${root_mysql-password} &>>${log}
 status_check
 
 
