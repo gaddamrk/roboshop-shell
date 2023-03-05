@@ -36,6 +36,7 @@ nodejs() {
   fi
   status_check
 
+  mkdir /app &>>${log}
 
   print_head "download the ${component} content"
   curl -l -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log}
