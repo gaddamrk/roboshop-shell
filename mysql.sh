@@ -1,6 +1,6 @@
 source common.sh
 
-if [ -z "${root_mysql-password}"]; the
+if [ -z "${root_mysql-password}"]; then
   echo variable root mysql password missing
   exit
 fi
