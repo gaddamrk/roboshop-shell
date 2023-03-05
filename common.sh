@@ -114,19 +114,16 @@ nodejs() {
 }
 
 maven() {
-    print_head "install maven"
-    yum install maven -y &>>${log}
-    status_check
+  print_head "install maven"
+  yum install maven -y &>>${log}
+  status_check
+  APPPRERQ
+  print_head "build maven package"
+  mvn clean package &>>${log}
+  status_check
 
-    APPPRERQ
-
-    print_head "build maven package"
-    mvn clean package &>>${log}
-    status_check
-
-    print_head "copy App file to App location"
-    mv target/${component}-1.0.jar ${component}.jar
-
-    systemD_setup
-    load_schema
+  print_head "copy App file to App location"
+  mv target/${component}-1.0.jar ${component}.jar
+  systemD_setup
+  load_schema
 }
