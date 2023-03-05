@@ -73,17 +73,19 @@ nodejs() {
   systemctl start ${component} &>>{log}
   status_check
 
-  print_head "configuring the monogo repo"
-  cp $script_location/files/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log}
-  status_check
+  if [ ${schema_load} == "true" ]; then
 
-  print_head "install mongodb client"
-  yum install mongodb-org-shell -y &>>${log}
-  status_check
+    print_head "configuring the monogo repo"
+    cp $script_location/files/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log}
+    status_check
 
-  print_head "load schema"
-  mongo --host mongodb-dev.devops70roboshop.online </app/schema/${component}.js &>>${log}
-  status_check
+    print_head "install mongodb client"
+    yum install mongodb-org-shell -y &>>${log}
+    status_check
 
+    print_head "load schema"
+    mongo --host mongodb-dev.devops70roboshop.online </app/schema/${component}.js &>>${log}
+    status_check
+  fi
 }
 
