@@ -15,17 +15,17 @@ cp ${script_location}/files/mysql.repo /etc/yum.repos.d/mysql.repo &>>${log}
 status_check
 
 
-print_head "install mysql server"
+print_head "install mysqld server"
 yum install mysql-community-server -y &>>${log}
 status_check
 
 
-print_head "enable mysql"
-systemctl enable mysql &>>${log}
+print_head "enable mysqld"
+systemctl enable mysqld &>>${log}
 status_check
 
-print_head "start mysql"
-systemctl start mysql &>>${log}
+print_head "start mysqld"
+systemctl start mysqld &>>${log}
 status_check
 
 print_head "reset default database password"
