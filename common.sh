@@ -127,3 +127,25 @@ maven() {
   systemD_setup
   load_schema
 }
+
+PHYTHON() {
+
+   print_head "install Phython"
+   yum install python36 gcc python3-devel -y &>>${log}
+   status_check
+
+   APPPRERQ
+
+   print_head "download the dependency"
+   cd /app
+   pip3.6 install -r requirements.txt   &>>${log}
+   status_check
+
+   print_head "UPDATE PASSWORD IN SERVICE FILE"
+   sed -i -e 's/roboshop_rabbitmq_password/${roboshop_rabbitmq_password}/' ${script_location}/files/${component}.service &>>${log}
+   status_check
+
+   systemD_setup
+
+
+}
