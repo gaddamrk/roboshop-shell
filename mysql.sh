@@ -10,6 +10,7 @@ print_head " diable mysql default module"
 dnf module disable mysql -y  &>>${log}
 status_check
 
+
 print_head "copy mysql repo files"
 cp ${script_location}/files/mysql.repo /etc/yum.repos.d/mysql.repo &>>${log}
 status_check
